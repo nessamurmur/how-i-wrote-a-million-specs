@@ -1,0 +1,363 @@
+*             *How I Wrote Over One Million Specs
+                   in Less Than 24 Hours*
+
+
+           PS: I work at Bluebox but didn't create
+                 an ascii logo yet... sorry...
+
+
+
+                    ⋛⋋( ‘Θ’)⋌⋚ @niftyn8
+
+                              ̑ PPS: We're hiring (•̀ᴗ•́)و̑̑
+
+*                    { brace yourselves }
+
+                       ~heh... get it?~
+
+                         ~brace...~  (¬‿¬)
+
+*                     *y u rite so many?*
+
+
+             (」゜ロ゜)」 ~OVER 9000!!!~
+
+
+                              ~(1 million even...)~ ʕᴥ• ʔ☝
+
+
+
+*
+*                    *how u rite so many???*
+
+                                        ~how?~ (•ิ_•ิ)?
+
+          ʕ ⊃･ ◡ ･ ʔ⊃ ~we'll get there...~
+
+*                    *a little background*
+
+
+                   I write 💎 ALL day ｡◕‿◕｡
+
+
+                                           ~... at work.~
+
+*                       *but at home...*
+
+                          I <3 λ
+
+
+                (ˇ_ˇ”) ƪ(˘⌣˘)┐ ƪ(˘⌣˘)ʃ ┌(˘⌣˘)ʃ
+
+
+                     ʕ•͜ ͢ ͞ •ʔ  ~I'll play with anything...~
+
+*                   ~i can haz lithp?~ ヽ(*⌒∇⌒*)ﾉ
+
+
+             (define (❤lang)
+               (display "As long as it has ()s"))
+
+*               *wait... wat were we talking about?*
+
+                 ~sorry for the diversion...~
+             ~promise there's a point to this...~ 😽
+
+*           *TDD IS DEAD!*     ~i need a hug... (>'.')>~
+
+
+
+                    *or so some* might say...
+
+
+            ~ó_ò (are we still listening to that guy?)~
+
+*                      *Long Live TDD!!!*
+
+
+
+                     (^_________________^)
+
+
+
+                       ~testing makes me _really_ happy.~
+
+*                *EVEN MORE TDD!!! \m/(>.<)\m/*
+
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+*                *EVEN MORE POWERFUL TDD!!!*
+
+
+                    ~put 'em up~ ✧ʕ̢̣̣̣̣̩̩̩̩·͡˔·ོɁ̡̣̣̣̣̩̩̩̩✧
+
+*                              *but n8...* (´ι_｀ )
+
+            ๑⚈ ․̫ ⚈๑)  ~yeeessss....~
+
+
+            How could we make TDD more powerful???
+
+                            O.o
+*                       ((())) λλλλ
+
+
+                       () ~we have the technology~
+
+
+           ~by jove I think they've got it~ λ
+
+*              [say hello to my little friend]
+
+
+                    GENERATIVE TESTING!!!
+
+
+                 ┗( ^o^)┛≡┏( ^o^)┓≡┗( ^o^)┛
+
+*                         wat.
+#+begin_src ruby
+                 describe "#reverse" do
+                 end
+#+end_src
+
+*              (¬ -̮ ¬)   [for all something...]
+
+#+begin_src ruby
+            forall(:string) { generate(:string) }
+#+end_src
+*                      please work...
+#+begin_src ruby
+  it "shall make the last first and the first last" do
+    expect(string.reverse.last).to eq(string.first)
+  end
+#+end_src
+*                    *all together now!*
+#+begin_src ruby
+  describe "#reverse" do
+    generative do
+      forall(:string) { generate(:string) }
+
+      it "shall make the last first and the first last" do
+        expect(string.reverse.last).to eq(string.first)
+      end
+    end
+  end
+#+end_src
+
+*                       *drum roll...*
+
+#+begin_src bash
+$ rake
+> GENERATIVE_COUNT=10_000
+> rspec --require generative --format Generative --tag generative
+> Run options: include {:generative=>true}
+#+end_src
+
+*                         *~BAM!~*
+#+begin_src bash
+> String
+>  #reverse
+>    generative
+>      last shall be first and first shall be last
+>
+> Finished in 0.68 seconds
+> 10000 examples, 0 failures
+#+end_src
+*                      *genera-whaaa...*
+
+#+begin_src ruby
+
+                    *generative do*
+                       *# some stuff*
+                    *end*
+#+end_src
+                             ~this is a generative test~
+                             ~after all...~ （〜^∇^)〜
+
+*                       *Generative*
+
+#+begin_src ruby
+                      # Gemfile
+                      gem 'generative'
+#+end_src
+
+           ~it's just a gem!~ ♪(((#^-^)八(^_^*)))♪
+
+*                       *Degenerate*
+
+#+begin_src ruby
+                      # Gemfile
+                      gem 'degenerate'
+#+end_src
+*                     [Panic Moonwalk...]
+
+
+         ~Do *not* moonwalk away from me!~  o(-`д´- ｡)
+*                  *what* just happened? (¬▂¬)
+
+
+             (⌯⊙⍛⊙)  ~is he ever going to explain?~
+
+         ~I've just been looking at pictures...~ (=^‥^=)
+*                    Welcome to Amazon  (･`◡´･)ゝ
+#+begin_src ruby
+        # order == Order.new(type: :digital, address: '429 Wallaby Way',
+        #                    email: 'nemo@thesea.com', store_id: '1')
+
+        # order.to_variant == [:digital, #<Order:0x007feb1b06cda0>]
+
+        OrderDispatch.dispatch(order.to_variant)
+
+#+end_src
+*                 Just Another Day on the Job...
+#+begin_src ruby
+       class OrderDispatch
+
+       def self.dispatch(order)
+         cases order,
+           digital: ->(o) { o.email! },
+           pickup: ->(o) { o.ship_to_store! },
+           delivery: ->(o) { o.shipit! }
+         end
+       end
+#+end_src
+
+*                         variants...
+#+begin_src ruby
+   def cases(variant, matches)
+     raise NonVariant unless is_variant?(variant)
+     type, *args = variant
+     m = matches[type] || matches[:else]
+     m.call(*args)
+   end
+#+end_src
+
+*                          is it?...
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) || type.is_a?(String)
+   end
+#+end_src
+
+*                   It looks like it works
+#+begin_src ruby
+    it "returns true for a valid variant" do
+      expect(is_variant?([:string, "test"])).to be true
+    end
+
+
+#+end_src
+
+*                 Still looking good!
+#+begin_src ruby
+    it "returns false for things that aren't variants" do
+      expect(is_variant?(User.new)).to be false
+    end
+#+end_src
+
+*                    Let's just make sure...
+
+#+begin_src ruby
+    Generative.register(:variant) do
+      [generate(:key), generate(:any)]
+    end
+#+end_src
+
+*                    Let's just make sure...
+
+#+begin_src ruby
+   generative do
+     data(:variant) { generate(:variant) }
+
+     it "returns true for variants" do
+       expect(is_variant?(variant)).to be true
+     end
+   end
+#+end_src
+
+*                    Let's just make sure...
+#+begin_src ruby
+    Generative.register(:nonvariant) do
+      generators = Generative.manager.generators
+      generator = generators.keys.select { |g|
+        !g.to_s.match(/variant/)
+      }.sample
+      generator.call(limit: 100)
+    end
+#+end_src
+
+*                    Let's just make sure...
+#+begin_src ruby
+   generative do
+     data(:nonvariant) { generate(:nonvariant) }
+
+     it "returns false for nonvariants" do
+       expect(is_variant?(nonvariant)).to be false
+     end
+   end
+#+end_src
+
+*                         WOOPS!
+
+Failures:
+
+  1) Nifty::Variants is_variant?  returns false of invalid variants
+     Failure/Error: expect(is_variant?(nonvariant)).to be false
+
+       expected false
+            got true
+       shrunk example: :eoaijo
+
+     # ./spec/lib/nifty/variants_spec.rb:47:in `block (4 levels) in <top (required)>'
+
+*                    Why did that fail?
+#+begin_src ruby
+    first, *rest = [1, 2, 3]
+    first == 1
+    rest == [2, 3]
+#+end_src
+
+*                    Why did that fail?
+#+begin_src ruby
+    first, *rest = :eoaijo
+    first == :eoaijo
+    rest == []
+#+end_src
+
+*                          B4
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) || type.is_a?(String)
+   end
+#+end_src
+
+
+*                        after
+
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     (type.is_a?(Symbol) || type.is_a?(String)) &&
+        !rest.empty?
+   end
+#+end_src
+
+*                    Ok... but what about...
+
+         ٩(͡๏̯͡๏)۶     ~you have some 'splainin to do~
+*                    Ok... but what about...
+
+                  Performance?
+
+                      **limit the scope of what you're generating
