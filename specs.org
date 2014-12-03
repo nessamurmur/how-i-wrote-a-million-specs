@@ -125,15 +125,17 @@
 
 *                         wat.
 #+begin_src ruby
+
                  describe "#reverse" do
                  end
 #+end_src
 
 *              (¬ -̮ ¬)   [for all something...]
 
-#+begin_src ruby
-            forall(:string) { generate(:string) }
-#+end_src
+
+#+begin_src ruby          decribe "#reverse" do
+            for_every(:string) { generate(:string) }
+#+end_src          end
 *                      please work...
 #+begin_src ruby
   it "shall make the last first and the first last" do
@@ -144,7 +146,7 @@
 #+begin_src ruby
   describe "#reverse" do
     generative do
-      forall(:string) { generate(:string) }
+      for_every(:string) { generate(:string) }
 
       it "shall make the last first and the first last" do
         expect(string.reverse.last).to eq(string.first)
@@ -162,20 +164,19 @@ $ rake
 > Run options: include {:generative=>true}
 #+end_src
 
-*                         *~BAM!~*
+*                          *~BAM!~*
 #+begin_src bash
 > String
 >  #reverse
 >    generative
 >      last shall be first and first shall be last
 >
-> Finished in 0.68 seconds
+> Finished in 0.48 seconds
 > 10000 examples, 0 failures
 #+end_src
 *                      *genera-whaaa...*
 
 #+begin_src ruby
-
                     *generative do*
                        *# some stuff*
                     *end*
@@ -187,7 +188,7 @@ $ rake
 
 #+begin_src ruby
                       # Gemfile
-                      gem 'generative'
+                    gem 'generative'
 #+end_src
 
            ~it's just a gem!~ ♪(((#^-^)八(^_^*)))♪
@@ -196,8 +197,9 @@ $ rake
 
 #+begin_src ruby
                       # Gemfile
-                      gem 'degenerate'
+                    gem 'degenerate'
 #+end_src
+                   generate(:string)
 *                     [Panic Moonwalk...]
 
 
@@ -208,12 +210,40 @@ $ rake
              (⌯⊙⍛⊙)  ~is he ever going to explain?~
 
          ~I've just been looking at pictures...~ (=^‥^=)
+*               gentlemen, start your generators
+#+begin_src ruby
+    n.times do { generate(:string, limit: 10) }
+    # => "E^xrgzDyK"
+    # => "<tu;\5J"
+    # => "="  and so on...
+#+end_src
+
+*                     TEST ALL THE THINGS!
+#+begin_src ruby
+   it "maintains it's size" do
+     expect(string.reverse.length).to eq(string.length)
+   end
+#+end_src
+
+*                    Uh oh what went wrong!?
+ ERROR: expected: blah
+        got: "@PG7\\f9=uZTpJUDz>Mp^D[`vZSv1XERkgufQl15yp5qy\
+              ?4a<yA\\\\TnK7>7AyJqUmdnPh3T1S3;;Rht:htRsha^I`\
+              nbuAJYobRzqxIeX[blI?_px]?8YVhwFA:AQw]pE<OBju;1>
+              eL;otvK9IHi<krXlD<>re_6k\\h_11xNc1oOf9gJtg`7fu^6gZlFznOsrMGqTuQEExDqX>uPx]x`^F^kQnRD]3EC<@@c?GkP;R=R_8NY8HF_PB>iF4ZV:Bckw1=Vro3HFn5g[ey3tze5TnEaT=e;[jqn]VL4C^V?2ea]fLRCf9G]7gx8CeGe29NfN6O]QqI<s=ntMOHXj9]Qem`bOqB=QvaaQV_7yCIhHHLHb3^`Uccao?_i6Yr
+
+*                 I'm melting! err... shrinking...
+
+              expected: true
+              got:      false
+              shrunk example:   "$"
+
 *                    Welcome to Amazon  (･`◡´･)ゝ
 #+begin_src ruby
-        # order == Order.new(type: :digital, address: '429 Wallaby Way',
-        #                    email: 'nemo@thesea.com', store_id: '1')
+  # order == Order.new(type: :digital, address: '429 Wallaby Way',
+  #                    email: 'nemo@thesea.com', store_id: '1')
 
-        # order.to_variant == [:digital, #<Order:0x007feb1b06cda0>]
+  # order.to_variant == [:digital, #<Order:0x007feb1b06cda0>]
 
         OrderDispatch.dispatch(order.to_variant)
 
@@ -353,6 +383,14 @@ Failures:
    end
 #+end_src
 
+*                        after moar tests...
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) && !rest.empty?
+   end
+#+end_src
+
 *                    Ok... but what about...
 
          ٩(͡๏̯͡๏)۶     ~you have some 'splainin to do~
@@ -360,4 +398,69 @@ Failures:
 
                   Performance?
 
-                      **limit the scope of what you're generating
+                       ~This seems slloooooww~
+*                   limit generator scope
+#+begin_src ruby
+ # Don't do this...
+ Generative.register_generator(:first_name) do |_opts|
+   Generative.generate(:string)
+   # max length is 2305843009213693951
+   # on 64 bit machines...
+ end
+#+end_src
+
+*                   limit generator scope
+#+begin_src ruby
+ # Do this!
+ Generative.register_generator(:first_name) do |_opts|
+   Generative.generate(:string, limit: 200)
+ end
+#+end_src
+*                    Ok... but what about...
+
+                             Flakey specs?
+
+         ~ugh... I hate flakey specs...~
+                           ლ(｡-﹏-｡ ლ)
+*                    yup... limit scope
+~remember me?~
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) && !rest.empty?
+   end
+#+end_src
+*                           before
+~remember me?~
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) || type.is_a?(String)
+       && !rest.empty?
+   end
+#+end_src
+*                           after
+~remember me?~
+#+begin_src ruby
+   def is_variant?(variant)
+     type, *rest = variant
+     type.is_a?(Symbol) && !rest.empty?
+   end
+#+end_src
+*       （。-＿-。）   so what's the catch???
+
+       ~ok... there's a couple caveats...~  (^_^;)
+*                      no shrinking yet...
+
+                        ヽ(´□｀。)ﾉ
+
+                   me: ~Shrink darn you!!!~
+                   example: ~I won't do it!!~
+*                            hax
+
+         ~wat are these extra bits for?~ (゜-゜)
+
+          (⊙_☉)   ~ehhh... probably nothing...~
+*                      all is NOT lost!!!
+
+                (ˇ_ˇ”) ƪ(˘⌣˘)┐ ƪ(˘⌣˘)ʃ ┌(˘⌣˘)ʃ
