@@ -139,14 +139,6 @@
 
            ~by jove I think they've got it~ λ
 
-*              [say hello to my little friend]
-
-
-                    GENERATIVE TESTING!!!
-
-
-                 ┗( ^o^)┛≡┏( ^o^)┓≡┗( ^o^)┛
-
 *                         examples
 
 #+begin_src ruby
@@ -207,6 +199,15 @@
     end
   end
 #+end_src
+
+*              [say hello to my little friend]
+
+
+                    GENERATIVE TESTING!!!
+
+
+                 ┗( ^o^)┛≡┏( ^o^)┓≡┗( ^o^)┛
+
 *                      *genera-whaaa...*
 
 #+begin_src ruby
@@ -267,16 +268,17 @@ $ rake
 > Finished in 0.48 seconds
 > 10000 examples, 0 failures
 #+end_src
-*                     [Panic Moonwalk...]
-
-
-         ~Do *not* moonwalk away from me!~  o(-`д´- ｡)
 *                  *what* just happened? (¬▂¬)
 
 
              (⌯⊙⍛⊙)  ~is he ever going to explain?~
 
          ~I've just been looking at pictures...~ (=^‥^=)
+
+*                     [Panic Moonwalk...]
+
+
+         ~Do *not* moonwalk away from me!~  o(-`д´- ｡)
 *               gentlemen, start your generators
 #+begin_src ruby
     n.times do { generate(:string, limit: 10) }
@@ -284,20 +286,20 @@ $ rake
     # => "<tu;\5J"
     # => "="  and so on...
 #+end_src
+                               ~more on this later...~
 
-*                     TEST ALL THE THINGS!
-#+begin_src ruby
-   it "maintains it's size" do
-     expect(string.reverse.length).to eq(string.length)
-   end
-#+end_src
+*                Ok... so what happens when it fails?
 
-*                    Uh oh what went wrong!?
- ERROR: expected: blah
-        got: "@PG7\\f9=uZTpJUDz>Mp^D[`vZSv1XERkgufQl15yp5qy\
+ ERROR: expected: true
+        got: false
+        example: "@PG7\\f9=uZTpJUDz>Mp^D[`vZSv1XERkgufQl15yp\
               ?4a<yA\\\\TnK7>7AyJqUmdnPh3T1S3;;Rht:htRsha^I`\
-              nbuAJYobRzqxIeX[blI?_px]?8YVhwFA:AQw]pE<OBju;1>
-              eL;otvK9IHi<krXlD<>re_6k\\h_11xNc1oOf9gJtg`7fu^6gZlFznOsrMGqTuQEExDqX>uPx]x`^F^kQnRD]3EC<@@c?GkP;R=R_8NY8HF_PB>iF4ZV:Bckw1=Vro3HFn5g[ey3tze5TnEaT=e;[jqn]VL4C^V?2ea]fLRCf9G]7gx8CeGe29NfN6O]QqI<s=ntMOHXj9]Qem`bOqB=QvaaQV_7yCIhHHLHb3^`Uccao?_i6Yr
+              nbuAJYobRzqxIeX[blI?_px]?8YVhwFA:AQw]pE<OBju;1>\
+              eL;otvK9IHi<krXlD<>re_6k\\h_11xNc1oOf9gJtg`7fu^\
+              6gZlFznOsrMGqTuQEExDqX>uPx]x`^F^kQnRD]3EC<@@c?G\
+              kP;R=R_8NY8HF_PB>iF4ZV:Bckw1=Vro3HFn5g[ey3tze5T\
+              nEaT=e;[jqn]VL4C^V?2ea]fLRCf9G]7gx8CeGe29NfN6O\
+              ]QqI<s=ntMOHXj9]Qem`bOqB=QvaaQV_7yCIhHHLHb3^`Uccao?_i6Yr
 
 *                 I'm melting! err... shrinking...
 
