@@ -1,4 +1,4 @@
-*             *How I Wrote Over One Million Specs
+*              *How I Wrote Over One Million Specs
                    in Less Than 24 Hours*
 
 
@@ -63,6 +63,11 @@
                  ~sorry for the diversion...~
              ~promise there's a point to this...~ 😽
 
+*                           *TDD*
+
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+                ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
+
 *           *TDD IS DEAD!*     ~i need a hug... (>'.')>~
 
 
@@ -107,6 +112,25 @@
             How could we make TDD more powerful???
 
                             O.o
+
+*                              *but n8...* (´ι_｀ )
+
+            ๑⚈ ․̫ ⚈๑)  ~yeeessss....~
+
+            We have Cucumber and RSpec and Capybara...
+*                              *but n8...* (´ι_｀ )
+
+            ๑⚈ ․̫ ⚈๑)  ~yeeessss....~
+
+            We have Cucumber and RSpec and Capybara...
+            and we have Selenium and Web kit...
+
+            features, acceptance tests, unit test...
+
+*                          uhhhh
+
+
+                           *WTFDD*
 *                       ((())) λλλλ
 
 
@@ -123,25 +147,54 @@
 
                  ┗( ^o^)┛≡┏( ^o^)┓≡┗( ^o^)┛
 
-*                         wat.
-#+begin_src ruby
+*                         examples
 
-                 describe "#reverse" do
-                 end
+#+begin_src ruby
+                                     #exactly! ヽ(;^o^ヽ)
+    describe "#reverse" do
+      let(:string) { "hello world" }
+
+      it "shall make the first last and the last first" do
+        expect(string.reverse.first).to eq(string.last)
+      end
+    end
+#+begin_src
+*                       a little better...
+#+begin_src ruby
+    describe "#reverse" do
+      let(:string) { SecureRandom.hex }
+
+      it "shall make the first last and the last first" do
+        expect(string.reverse.first).to eq(string.last)
+      end
+    end
 #+end_src
 
-*              (¬ -̮ ¬)   [for all something...]
+*              (¬ -̮ ¬)   [for every string...]
 
 
-#+begin_src ruby          decribe "#reverse" do
-            for_every(:string) { generate(:string) }
-#+end_src          end
-*                      please work...
 #+begin_src ruby
-  it "shall make the last first and the first last" do
-    expect(string.reverse.last).to eq(string.first)
-  end
+    describe "#reverse" do
+      #let(:string) { SecureRandom.hex }
+      for_every(:string) { generate(:string) }
+
+      it "shall make the first last and the last first" do
+        expect(string.reverse.first).to eq(string.last)
+      end
+    end
 #+end_src
+*                     What if I told you...
+
+                       ~it *is* possible~
+
+                             -o-o-
+
+*                        we just need...
+
+
+
+                                    ~one more thing~
+
 *                    *all together now!*
 #+begin_src ruby
   describe "#reverse" do
@@ -153,26 +206,6 @@
       end
     end
   end
-#+end_src
-
-*                       *drum roll...*
-
-#+begin_src bash
-$ rake
-> GENERATIVE_COUNT=10_000
-> rspec --require generative --format Generative --tag generative
-> Run options: include {:generative=>true}
-#+end_src
-
-*                          *~BAM!~*
-#+begin_src bash
-> String
->  #reverse
->    generative
->      last shall be first and first shall be last
->
-> Finished in 0.48 seconds
-> 10000 examples, 0 failures
 #+end_src
 *                      *genera-whaaa...*
 
@@ -198,8 +231,42 @@ $ rake
 #+begin_src ruby
                       # Gemfile
                     gem 'degenerate'
-#+end_src
+
+                      # provides
                    generate(:string)
+#+end_src
+
+*                     *back to business*
+#+begin_src ruby
+  describe "#reverse" do
+    generative do
+      for_every(:string) { generate(:string) }
+
+      it "shall make the last first and the first last" do
+        expect(string.reverse.last).to eq(string.first)
+      end
+    end
+  end
+#+end_src
+*                       *drum roll...*
+
+#+begin_src bash
+$ rake
+> GENERATIVE_COUNT=10_000
+> rspec --require generative --format Generative --tag generative
+> Run options: include {:generative=>true}
+#+end_src
+
+*                          *~BAM!~*
+#+begin_src bash
+> String
+>  #reverse
+>    generative
+>      last shall be first and first shall be last
+>
+> Finished in 0.48 seconds
+> 10000 examples, 0 failures
+#+end_src
 *                     [Panic Moonwalk...]
 
 
