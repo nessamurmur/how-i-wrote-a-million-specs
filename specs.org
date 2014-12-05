@@ -63,7 +63,7 @@
                  ~sorry for the diversion...~
              ~promise there's a point to this...~ 😽
 
-*                           *TDD*
+*                            *TDD*
 
                 ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
                 ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤
@@ -137,7 +137,7 @@
                        () ~we have the technology~
 
 
-           ~by jove I think they've got it~ λ
+           ~by jove I think we've got it~ λ
 
 *                         examples
 
@@ -168,7 +168,7 @@
 #+begin_src ruby
     describe "#reverse" do
       #let(:string) { SecureRandom.hex }
-      for_every(:string) { generate(:string) }
+      all_the(:string)
 
       it "shall make the first last and the last first" do
         expect(string.reverse.first).to eq(string.last)
@@ -367,7 +367,7 @@ $ rake
 *                    Let's just make sure...
 
 #+begin_src ruby
-    Generative.register(:variant) do
+    Generative.register_generator(:variant) do
       [generate(:key), generate(:any)]
     end
 #+end_src
@@ -376,7 +376,7 @@ $ rake
 
 #+begin_src ruby
    generative do
-     data(:variant) { generate(:variant) }
+     for_every(:variant) { generate(:variant) }
 
      it "returns true for variants" do
        expect(is_variant?(variant)).to be true
@@ -386,10 +386,10 @@ $ rake
 
 *                    Let's just make sure...
 #+begin_src ruby
-    Generative.register(:nonvariant) do
+    Generative.register_generator(:nonvariant) do
       generators = Generative.manager.generators
       generator = generators.keys.select { |g|
-        !g.to_s.match(/variant/)
+        !g.to_s.match(//variant//)
       }.sample
       generator.call(limit: 100)
     end
@@ -398,7 +398,7 @@ $ rake
 *                    Let's just make sure...
 #+begin_src ruby
    generative do
-     data(:nonvariant) { generate(:nonvariant) }
+     for_every(:nonvariant) { generate(:nonvariant) }
 
      it "returns false for nonvariants" do
        expect(is_variant?(nonvariant)).to be false
