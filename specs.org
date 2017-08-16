@@ -1,10 +1,9 @@
-*              *How I Wrote Over One Million Specs
+=*              *How I Wrote Over One Million Specs
                    in Less Than 24 Hours*
 
 
-           PS: I work at Bluebox but didn't create
-                 an ascii logo yet... sorry...
-
+              PS: I work at Nike but didn't create
+                    an ascii logo yet... sorry...
 
 
                     ⋛⋋( ‘Θ’)⋌⋚ @levionessa
