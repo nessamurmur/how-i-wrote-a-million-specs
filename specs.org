@@ -1,4 +1,4 @@
-=*              *How I Wrote Over One Million Specs
+*              *How I Wrote Over One Million Specs
                    in Less Than 24 Hours*
 
 
@@ -139,20 +139,20 @@
 #+begin_src ruby
                                      #exactly! ヽ(;^o^ヽ)
     describe "#reverse" do
-      let(:string) { "hello world" }
+      let(:string) { "string with special characters $" }
 
       it "shall make the first last and the last first" do
-        expect(string.reverse.first).to eq(string.last)
+        expect(remove_special_characters(string)).to not_include(special_characters)
       end
     end
 #+begin_src
 *                       a little better...
 #+begin_src ruby
     describe "#reverse" do
-      let(:string) { SecureRandom.hex }
+      let(:string) { SecureRandom.random_bytes }
 
       it "shall make the first last and the last first" do
-        expect(string.reverse.first).to eq(string.last)
+        expect(remove_special_characters(string)).to not_include(special_characters)
       end
     end
 #+end_src
@@ -162,11 +162,11 @@
 
 #+begin_src ruby
     describe "#reverse" do
-      #let(:string) { SecureRandom.hex }
+      #let(:string) { SecureRandom.random_bytes }
       all_the(:string)
 
       it "shall make the first last and the last first" do
-        expect(string.reverse.first).to eq(string.last)
+        expect(remove_special_characters(string)).to not_include(special_characters)
       end
     end
 #+end_src
@@ -189,7 +189,7 @@
       for_every(:string) { generate(:string) }
 
       it "shall make the last first and the first last" do
-        expect(string.reverse.last).to eq(string.first)
+        expect(remove_special_chars(string)).to not_include(special_chars)
       end
     end
   end
